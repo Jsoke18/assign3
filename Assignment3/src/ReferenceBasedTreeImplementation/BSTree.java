@@ -11,9 +11,6 @@ public class BSTree<E extends Comparable> implements BSTreeADT {
     public BSTree() {
         this.root = null;
     }
-    public BSTree(BSTreeNode<E> node) {
-        this.root = node;
-    }
 
     @Override
     public boolean add(Comparable newEntry) throws NullPointerException {
@@ -22,7 +19,28 @@ public class BSTree<E extends Comparable> implements BSTreeADT {
             size++;
             return true;
         }
-        return false;
+        BSTreeNode current = this.root;
+        while (current != null) {
+            if (newEntry.compareTo(current.getElement()) < 0) {
+                if (current.getLeft() != null) {
+                    current = current.getLeft();
+                } else {
+                    current.setLeft(new BSTreeNode<E>(newEntry));
+                    size++;
+                    return true;
+                }
+            } else if (newEntry.compareTo(current.getElement()) > 0) {
+                if (current.getRight() != null) {
+                    current = current.getRight();
+                } else {
+                    current.setRight(new BSTreeNode<E>(newEntry));
+                    size++;
+                    return true;
+                }
+            } else {
+                return false;
+            }
+        }
     }
 
     @Override
@@ -32,26 +50,58 @@ public class BSTree<E extends Comparable> implements BSTreeADT {
 
     @Override
     public BSTreeNode search(Comparable entry) throws TreeException {
-        // TODO Auto-generated method stub
-        return null;
+        if (root == null) {
+            return null;
+        }
+        BSTreeNode<E> current = root;
+        while (current != null) {
+            if (newEntry.compareTo(current.getElement()) < 0) {
+                if (current.getLeft() != null) {
+                    current = current.getLeft();
+                } else {
+                    return null;
+                }
+            } else if (newEntry.compareTo(current.getElement()) > 0) {
+                if (current.getRight() != null) {
+                    current = current.getRight();
+                } else {
+                    return null;
+                }
+            } else {
+                return current;
+            }
+        }
     }
 
     @Override
     public void clear() {
-        // TODO Auto-generated method stub
-
+        this.root = null;
     }
 
     @Override
     public boolean contains(Comparable entry) {
-        // TODO Auto-generated method stub
-        return false;
+        return search(entry) != null;
     }
 
     @Override
     public int getHeight() {
-        // TODO Auto-generated method stub
-        return 0;
+        return getHeight(this);
+    }
+
+    private int getHeight(BSTreeNode<E> node) {
+        if(node == null) {
+			return 0;
+		}
+		
+		int leftHeight = getHeight(node.getLeft());
+		int rightHeight = getHeight(node.getRight());
+		
+		if(leftHeight > rightHeight) {
+			return leftHeight + 1;
+		}
+		else {
+			return rightHeight + 1;
+		}
     }
 
     @Override
