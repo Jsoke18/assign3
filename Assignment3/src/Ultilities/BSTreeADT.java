@@ -1,7 +1,7 @@
 /**
  * BSTreeADT
  */
-package ca.sait.Ultilities;
+package Ultilities;
 
 import java.io.*;
 
