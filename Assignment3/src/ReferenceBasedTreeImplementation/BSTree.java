@@ -5,17 +5,29 @@ import Ultilities.BSTreeADT;
 import Ultilities.Iterator;
 
 public class BSTree<E extends Comparable> implements BSTreeADT {
+    public BSTreeNode<E> root;
+    public int size;
+
+    public BSTree() {
+        this.root = null;
+    }
+    public BSTree(BSTreeNode<E> node) {
+        this.root = node;
+    }
 
     @Override
     public boolean add(Comparable newEntry) throws NullPointerException {
-        // TODO Auto-generated method stub
+        if (this.root == null) {
+            root = new BSTreeNode<E>(newEntry);
+            size++;
+            return true;
+        }
         return false;
     }
 
     @Override
     public BSTreeNode getRoot() throws TreeException {
-        // TODO Auto-generated method stub
-        return null;
+        return root;
     }
 
     @Override
@@ -50,8 +62,7 @@ public class BSTree<E extends Comparable> implements BSTreeADT {
 
     @Override
     public boolean isEmpty() {
-        // TODO Auto-generated method stub
-        return false;
+        return this.root == null;
     }
 
     @Override
@@ -68,8 +79,7 @@ public class BSTree<E extends Comparable> implements BSTreeADT {
 
     @Override
     public int size() {
-        // TODO Auto-generated method stub
-        return 0;
+        return this.size;
     }
 
 }
