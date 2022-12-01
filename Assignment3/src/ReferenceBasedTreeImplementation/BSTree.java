@@ -4,7 +4,7 @@ import Exceptions.TreeException;
 import Ultilities.BSTreeADT;
 import Ultilities.Iterator;
 
-public class BSTree<E extends Comparable> implements BSTreeADT {
+public class BSTree<E extends Comparable> implements BSTreeADT<E> {
     public BSTreeNode<E> root;
     public int size;
 
@@ -44,12 +44,12 @@ public class BSTree<E extends Comparable> implements BSTreeADT {
     }
 
     @Override
-    public BSTreeNode getRoot() throws TreeException {
+    public BSTreeNode<E> getRoot() throws TreeException {
         return root;
     }
 
     @Override
-    public BSTreeNode search(Comparable entry) throws TreeException {
+    public BSTreeNode<E> search(Comparable entry) throws TreeException {
         if (root == null) {
             return null;
         }
