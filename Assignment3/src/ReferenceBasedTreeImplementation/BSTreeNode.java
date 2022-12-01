@@ -32,5 +32,16 @@ public class BSTreeNode<E extends Comparable<? super E>> implements Serializable
         this.right = right;
     }
 
-    
+    public boolean hasLeftChild(){
+		return this.left != null;
+	}
+	
+	public boolean hasRightChild() {
+		return this.right != null;
+	}
+	
+	public boolean isLeaf() {
+		return this.left == null && this.right == null;
+	}
+	
 }
