@@ -1,10 +1,8 @@
-package ReferenceBasedTreeImplementation;
+package referenceBasedTreeImplementation;
 
-import Exceptions.TreeException;
-import Ultilities.BSTreeADT;
-import Ultilities.Iterator;
-
-public class BSTree<E extends Comparable> implements BSTreeADT<E> {
+import exceptions.TreeException;
+import ultilities.*;
+public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
     public BSTreeNode<E> root;
     public int size;
 
@@ -15,7 +13,7 @@ public class BSTree<E extends Comparable> implements BSTreeADT<E> {
     @Override
     public boolean add(Comparable newEntry) throws NullPointerException {
         if (this.root == null) {
-            root = new BSTreeNode<E>(newEntry);
+            root = new BSTreeNode<E>((E) newEntry);
             size++;
             return true;
         }
@@ -25,7 +23,7 @@ public class BSTree<E extends Comparable> implements BSTreeADT<E> {
                 if (current.getLeft() != null) {
                     current = current.getLeft();
                 } else {
-                    current.setLeft(new BSTreeNode<E>(newEntry));
+                    current.setLeft(new BSTreeNode<E>((E) newEntry));
                     size++;
                     return true;
                 }
@@ -33,7 +31,7 @@ public class BSTree<E extends Comparable> implements BSTreeADT<E> {
                 if (current.getRight() != null) {
                     current = current.getRight();
                 } else {
-                    current.setRight(new BSTreeNode<E>(newEntry));
+                    current.setRight(new BSTreeNode<E>((E) newEntry));
                     size++;
                     return true;
                 }
@@ -41,6 +39,7 @@ public class BSTree<E extends Comparable> implements BSTreeADT<E> {
                 return false;
             }
         }
+        return false;
     }
 
     @Override
@@ -55,13 +54,13 @@ public class BSTree<E extends Comparable> implements BSTreeADT<E> {
         }
         BSTreeNode<E> current = root;
         while (current != null) {
-            if (newEntry.compareTo(current.getElement()) < 0) {
+            if (entry.compareTo(current.getElement()) < 0) {
                 if (current.getLeft() != null) {
                     current = current.getLeft();
                 } else {
                     return null;
                 }
-            } else if (newEntry.compareTo(current.getElement()) > 0) {
+            } else if (entry.compareTo(current.getElement()) > 0) {
                 if (current.getRight() != null) {
                     current = current.getRight();
                 } else {
@@ -71,6 +70,7 @@ public class BSTree<E extends Comparable> implements BSTreeADT<E> {
                 return current;
             }
         }
+        return null;
     }
 
     @Override
@@ -79,13 +79,13 @@ public class BSTree<E extends Comparable> implements BSTreeADT<E> {
     }
 
     @Override
-    public boolean contains(Comparable entry) {
+    public boolean contains(Comparable entry) throws TreeException {
         return search(entry) != null;
     }
 
     @Override
     public int getHeight() {
-        return getHeight(this);
+        return getHeight(this.root);
     }
 
     private int getHeight(BSTreeNode<E> node) {
@@ -105,9 +105,8 @@ public class BSTree<E extends Comparable> implements BSTreeADT<E> {
     }
 
     @Override
-    public Iterator inorderIterator() {
-        // TODO Auto-generated method stub
-        return null;
+    public Iterator<E> inorderIterator() {
+        return new LVR<E>(root);
     }
 
     @Override
@@ -116,15 +115,13 @@ public class BSTree<E extends Comparable> implements BSTreeADT<E> {
     }
 
     @Override
-    public Iterator postorderIterator() {
-        // TODO Auto-generated method stub
-        return null;
+    public Iterator<E> postorderIterator() {
+        return new LRV<E>(root);
     }
 
     @Override
-    public Iterator preorderIterator() {
-        // TODO Auto-generated method stub
-        return null;
+    public Iterator<E> preorderIterator() {
+        return new VLR<E>(root);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package ReferenceBasedTreeImplementation;
+package referenceBasedTreeImplementation;
 
 import java.io.*;
 
@@ -11,9 +11,10 @@ public class BSTreeNode<E extends Comparable<? super E>> implements Serializable
         this.left = left;
         this.right = right;
     }
-    public BSTreeNode() {
+    public BSTreeNode(E element) {
+    	this.element = element;
     }
-    public E getElement() {
+	public E getElement() {
         return element;
     }
     public void setElement(E element) {

@@ -3,9 +3,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.*;
 
-import Exceptions.*;
-import ReferenceBasedTreeImplementation.*;
-import Ultilities.*;
+import exceptions.*;
+import referenceBasedTreeImplementation.*;
+import ultilities.*;
 
 class BSTreeTests {
 

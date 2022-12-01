@@ -1,12 +1,12 @@
 /**
  * BSTreeADT
  */
-package Ultilities;
+package ultilities;
 
 import java.io.*;
 
-import Exceptions.TreeException;
-import ReferenceBasedTreeImplementation.BSTreeNode;
+import exceptions.TreeException;
+import referenceBasedTreeImplementation.BSTreeNode;
 
 /**
  * @author dwatson, kitty
