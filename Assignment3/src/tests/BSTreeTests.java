@@ -5,7 +5,7 @@ import org.junit.jupiter.api.*;
 
 import exceptions.*;
 import referenceBasedTreeImplementation.*;
-import ultilities.*;
+import utilities.*;
 
 class BSTreeTests {
 
@@ -36,6 +36,10 @@ class BSTreeTests {
 		assertTrue(tree.isEmpty());
 	}
 	
+	
+	/** 
+	 * @throws TreeException
+	 */
 	@Test 
 	void testAdd() throws TreeException {
 		tree.add(3);
@@ -79,6 +83,10 @@ class BSTreeTests {
 		}
 	}
 	
+	
+	/** 
+	 * @throws TreeException
+	 */
 	@Test
 	void testContains() throws TreeException {
 		addSet();
@@ -86,6 +94,10 @@ class BSTreeTests {
 		assertFalse(tree.contains(10));
 	}
 	
+	
+	/** 
+	 * @throws TreeException
+	 */
 	@Test
 	void testSearch() throws TreeException {
 		addSet();

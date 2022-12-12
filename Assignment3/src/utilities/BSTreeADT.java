@@ -1,7 +1,7 @@
 /**
  * BSTreeADT
  */
-package ultilities;
+package utilities;
 
 import java.io.*;
 

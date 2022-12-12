@@ -1,4 +1,4 @@
-package ultilities;
+package utilities;
 
 import java.util.NoSuchElementException;
 
